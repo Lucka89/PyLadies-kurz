@@ -1,0 +1,18 @@
+petnames = {
+    "Ziggy": "canary",
+    "Giggy": "giraffe",
+    "Diggy": "donkey",
+    "Chiggy": "cheetah",
+    "Piggy": "python",
+    "Siggy": "shrimp"
+}
+
+petnames["Ziggy"] = "zebra"
+
+petnames["Miggy"] = "mosquio"
+
+del petnames["Chiggy"]
+
+for key, value in petnames.items():
+    print ("{} is a {}.".format(key, value))
+    
