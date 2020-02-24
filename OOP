@@ -1,0 +1,42 @@
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    def occupation(self, job):
+        print("{} has a job. That job is : {}.".format(self.name, job))
+
+class Actor(Person):
+    def __init__(self, name):
+        name = name.replace("m","mothy")
+        super().__init__(name)
+
+    def weaknesses(self):
+        print("{} weakness is: Being too critical of yourself.".format(self.name))
+
+    def strengths(self):
+        print("{} is really good at: Acting and how to express yourself.".format(self.name))
+
+class Handyman(Person):
+    def weaknesses(self):
+        print("{} weakness is: Being too lazy.".format(self.name))
+
+    def strengths(self):
+        print("{} is really good at: Any handy work.".format(self.name))
+
+class Creative(Person):
+    def weaknesses(self):
+        print("{} weakness is: Can't handle too much pressure.".format(self.name))
+
+    def strengths(self):
+        print("{} is naturally creative. She's perfect candidate to become designer.".format(self.name))
+
+    def occupation(self, job):
+        print("{} is between jobs right now ({}).".format(self.name, job))
+
+Jacqueline = Creative("Jacqueline")
+George = Handyman("George")
+Tim = Actor("Tim")
+
+Tim.occupation("well-know actor")
+George.occupation("joiner")
+Jacqueline.occupation("seeking")
