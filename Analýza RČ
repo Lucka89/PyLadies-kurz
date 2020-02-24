@@ -1,0 +1,54 @@
+def spravny_format(rodne_cislo):
+    "Zjistí správnost formátu: 6 číslic, lomítko, 4 číslice."
+    if not rodne_cislo[0:6].isdigit(): 
+        print("Prvních 5 znaků není číslo.")
+        chyba = False
+    elif rodne_cislo[6] != "/":
+        print("Neobsahuje lomítko na pozici 7.")
+        chyba = False
+    elif not rodne_cislo[7:11].isdigit():
+        print("Poslední 4 znaky nejsou číslo.")
+        chyba = False 
+    elif len(rodne_cislo) != 11:
+        print("Rodné číslo není 11 znaků dlouhé.")
+        chyba = False
+
+def delitelnost(rodne_cislo):
+    "Zjistí, zda je číslo dělitelné jedenácti."
+    soucet = (rodne_cislo[0:6]) + (rodne_cislo[7:11])
+    if int(soucet) % 11 != 0:
+        print("Rodné číslo není dělitelné 11 beze zbytku.")
+        chyba = False
+
+def datum_narozeni(rodne_cislo):
+    "Vypíše jaké datum narození je v čísle zakódováno."
+    print(den_narozeni,".",mesic_narozeni,".",rok_narozeni)
+
+def pohlavi(rodne_cislo):
+    "Vypíše jaké pohlaví je v čísle zakódováno."
+    if 7 > int(rodne_cislo[2]) > 4 :
+        print("ŽENA")
+    else:
+        print("MUŽ")
+
+chyba = False 
+while chyba == False:
+    chyba = True
+    rodne_cislo = input("Vlož své rodné číslo (včetně lomítka): ")
+    den_narozeni = rodne_cislo[4:6]
+    mesic_narozeni = rodne_cislo[2:4]
+    if 7 > int(rodne_cislo[2]) > 4 :
+        mesic_narozeni = int(rodne_cislo[2:4]) - 50
+    rok_narozeni = rodne_cislo[:2]
+    try:
+        spravny_format(rodne_cislo)
+        delitelnost(rodne_cislo)
+    except Exception:
+        print("Špatný formát! Vložte své rodné číslo ve formátu rrmmdd/nnnc.")
+        rodne_cislo = input("Vlož své rodné číslo (včetně lomítka): ")
+        break
+    else:
+        datum_narozeni(rodne_cislo)
+        pohlavi(rodne_cislo)
+        break
+        
