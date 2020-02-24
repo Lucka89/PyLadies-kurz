@@ -1,0 +1,55 @@
+import random
+
+def vyhodnot(pole):
+    "Vyhodnocení stavu hry"
+    if "xxx" in pole:
+        return "x"
+    elif "ooo" in pole:
+        return "o"
+    elif "-" not in pole:
+        return "!"
+    else:
+        return "-"
+
+def tah(pole, cislo_policka, symbol):
+    "Vrátí herní pole s daným symbolem umístěným na danou pozici"
+    pole = list(pole)
+    pole[cislo_policka - 1] = symbol
+    pole_po_tahu = ("".join(pole))
+    return pole_po_tahu
+
+def tah_hrace(pole):
+    "Vrátí herní pole se zaznamenaným tahem hráče"
+    while True:
+        cislo_policka = int(input("Zadej číslo políčka od 1-20, které chceš obsadit:"))
+        if cislo_policka <= 0 or cislo_policka > 20:
+            print("Musíš zadat číslo v rozmezí herního pole -> 1-20!")
+        elif pole[cislo_policka -1] != "-":
+            print("{} políčko je již obsazené!".format(cislo_policka)) 
+        else:
+            return tah(pole, cislo_policka, "x") 
+
+def tah_pocitace(pole):
+    "Vrátí herní pole se zaznamenaným tahem počítače"
+    while True:
+        cislo_policka = random.randrange(1,21)
+        if pole[cislo_policka -1] == "-":
+            return tah(pole, cislo_policka, "o")
+
+def piskvorky1d():
+    pole = "--------------------"
+    while vyhodnot(pole) == "-":
+        pole = tah_hrace(pole)
+        print(pole)
+        if vyhodnot(pole) == "x":
+            print("Hráč vyhrál!")
+            break
+        pole = tah_pocitace(pole)
+        print(pole)
+        if vyhodnot(pole) == "o":
+            print("Počítač vyhrál!")
+        elif vyhodnot(pole) == "!":
+            print("Remíza!")
+            break
+
+piskvorky1d()
