@@ -1,0 +1,24 @@
+nezasifrovany_text = input('plaintext:  ')
+sifra = ('ciphertext:' ' ' '')
+
+klic = 0
+while (klic <= 0):
+    try:
+        klic = int(input('Zadej celé kladné číslo: '))
+    except:
+        print("To nebylo celé kladné číslo!")
+        klic = 0
+
+for znak in nezasifrovany_text:
+    i = ord(znak)
+    if ord('A') <= i <= ord('Z'):
+        i = i + klic
+        if (i > ord("Z")):
+            i - 26
+    if ord('a') <= i <= ord('z'):
+        i = i + klic
+        if (i > ord("z")):
+            i - 26
+    znak = chr(i)
+    sifra += znak 
+print(sifra)
