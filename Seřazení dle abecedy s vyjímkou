@@ -1,0 +1,10 @@
+zvirata = ["andulka", "had", "kočka", "pes", "králík", "tygr", "zebra"]
+zvirata_s_klicem = []
+
+zvirata_s_klicem.extend(["andulka"[1:], "had"[1:], "kočka"[1:],"pes"[1:], "králík"[1:], "tygr"[1:], "zebra"[1:]])
+
+serazena_zvirata = list(zip(zvirata_s_klicem, zvirata))
+serazena_zvirata.sort()
+
+for prvni, druhy in serazena_zvirata:
+    print(druhy.split(","), end =" ")
